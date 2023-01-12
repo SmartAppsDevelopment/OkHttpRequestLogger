@@ -61,7 +61,7 @@ maven { url 'https://jitpack.io' }
 
 gradle
 dependencies {
-  implementation 'com.github.SmartAppsDevelopment:AndroidOffilineLibrar:1.0.2'
+  	        implementation 'com.github.SmartAppsDevelopment:OkHttpRequestLogger:1.0.0'
 }
 ```
 
@@ -71,8 +71,8 @@ Maven:
 
 <dependency>
     <groupId>com.github.SmartAppsDevelopment</groupId>
-    <artifactId>AndroidOffilineLibrar</artifactId>
-    <version>1.0.2</version>
+    <artifactId>OkHttpRequestLogger</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
