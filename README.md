@@ -24,32 +24,30 @@ feedback.
 
 ### Example
 
-With Api Response:
+Enable Shake Listener At application level
 
 ```
- override fun onFailure(
-                    statusCode: Int,
-                    headers: Headers?,
-                    errorResponse: String?,
-                    throwable: Throwable?
-                ) {
+ class MainApplication:Application() {
+    override fun onCreate() {
+        super.onCreate()
+        LoggerApiSetting.enableShakeListener(this)
+    }
+}
 
-                    // Get response and save it with AndroidOffilineLibrar
-                    val dataFromFile = OfflineCacheRetrofit.getInstance(
-                        //Name of cache file later will access with same Name e.g UserSession.HOME_RESPONSE_FILE_NAME,
-                        //Class Ref for parse gson e.g FullHomeContent::class.java
-                    ).tryToGetDataClasses()
 
-                }
+```
 
-                override fun onSuccess(statusCode: Int, headers: Headers?, response: String?) {
-                   // When Got  response Fails  retrive it with AndroidOffilineLibrar
-                        OfflineCacheRetrofit.getInstance(
-                                //Name of cache file later will access with same Name e.g UserSession.HOME_RESPONSE_FILE_NAME,
-                        //Class Ref for parse gson e.g FullHomeContent::class.java
-                        ).writeToFile(newRespon)
-                
-                }
+Attach interceptor to your existing network library
+
+```
+
+            val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(ApiLogInterceptor).build()
+            retrofit = Retrofit.Builder()
+                .baseUrl("https://catfact.ninja/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
 ```
 
 ### Download
